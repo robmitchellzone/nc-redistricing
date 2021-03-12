@@ -1,14 +1,16 @@
-
-a {
-  cursor: pointer;
+#app {
+    display: flex;
+    align-items: center;
 }
 
-html,
-body {
-  background: #D6D6CE;
-  font-family: Verdana, Geneva, sans-serif;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
+.dropdown {
+    flex-direction: column;
+}
+
+.map {
+    padding-left: 10px;
+}
+
+.legend-text {
+    font-size: smaller;
 }
