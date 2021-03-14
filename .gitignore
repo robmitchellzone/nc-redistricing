@@ -6,4 +6,3 @@ node_modules/
 .prettierignore
 .prettierrc
 yarn-error.log
-tmp/

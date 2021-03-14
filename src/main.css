@@ -1,6 +1,25 @@
-#app {
-    display: flex;
-    align-items: center;
+.holy-grail,
+.holy-grail-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.holy-grail-nav {
+  order: -1;
+}
+
+@media (min-width: 768px) {
+  .holy-grail-body {
+    flex-direction: row;
+    flex: 1;
+  }
+  .holy-grail-content {
+    flex: 1;
+  }
+  .holy-grail-nav, .holy-grail-aside {
+    /* 12em is the width of the columns */
+    flex: 0 0 12em;
+  }
 }
 
 .dropdown {
@@ -8,7 +27,8 @@
 }
 
 .map {
-    padding-left: 10px;
+    display: block;
+    margin: auto;
 }
 
 .legend-text {

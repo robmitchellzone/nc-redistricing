@@ -37,16 +37,16 @@ function myViz(data) {
   let geoGenerator = geoPath().projection(projection);
   const color = scaleQuantize([0, 1], schemeRdBu[10]);
   const legendKeys = [
-    '+45%',
-    '+35%',
-    '+25%',
-    '+15%',
-    '+5%',
-    '+5%',
-    '+15%',
-    '+25%',
-    '+35%',
-    '+45%',
+    '90%',
+    '80%',
+    '70%',
+    '60%',
+    '50%',
+    '50%',
+    '60%',
+    '70%',
+    '80%',
+    '90%',
   ];
   const legendValues = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
@@ -77,6 +77,7 @@ function myViz(data) {
   // legend is the same so no need to update
   const legendHeight = 20;
   const legendWidth = 40;
+  // colorbar
   svg
     .append('g')
     .selectAll('legendBars')
@@ -87,15 +88,27 @@ function myViz(data) {
     .attr('width', legendWidth)
     .attr('height', legendHeight)
     .attr('fill', d => color(d));
+  // numbers
   svg
     .append('g')
     .selectAll('legendLabels')
     .data(legendKeys)
     .join('text')
-    .attr('x', (_, i) => i * legendWidth)
+    .attr('x', (_, i) => i * legendWidth + 10)
     .attr('y', 240)
     .text(d => d)
-    .attr('text-anchor', 'left')
+    .attr('text-anchor', 'start')
+    .attr('class', 'legend-text');
+  // d and r
+  svg
+    .append('g')
+    .selectAll('partLabels')
+    .data(['Republican vote', 'Democratic vote'])
+    .join('text')
+    .attr('x', (_, i) => i * (legendWidth + 150) + 60)
+    .attr('y', 220)
+    .text(d => d)
+    .attr('text-anchor', 'start')
     .attr('class', 'legend-text');
 
   myMap(datasetMap[0]);
