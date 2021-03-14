@@ -6,6 +6,7 @@
 
 .holy-grail-nav {
   order: -1;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -21,16 +22,19 @@
     flex: 0 0 12em;
   }
 }
-
 .dropdown {
     flex-direction: column;
 }
-
 .map {
     display: block;
     margin: auto;
 }
-
 .legend-text {
     font-size: smaller;
 }
+.party-text {
+    font-size: medium;
+}
+h2, h3 {
+    text-align: center;
+} 

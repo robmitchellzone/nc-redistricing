@@ -4,7 +4,6 @@ import {geoMercator, geoPath} from 'd3-geo';
 import {json, csv} from 'd3-fetch';
 import {scaleQuantize} from 'd3-scale';
 import {schemeRdBu} from 'd3-scale-chromatic';
-import {range} from 'd3-array';
 
 function myViz(data) {
   const datasetMap = [
@@ -70,6 +69,7 @@ function myViz(data) {
       .data(newData.features)
       .join('path')
       .attr('d', geoGenerator)
+      .attr('id', 'district')
       .attr('fill', d => colorArray[d['properties']['District'] - 1])
       .attr('stroke', '#000');
   }
@@ -102,14 +102,30 @@ function myViz(data) {
   // d and r
   svg
     .append('g')
-    .selectAll('partLabels')
+    .selectAll('partyLabels')
     .data(['Republican vote', 'Democratic vote'])
     .join('text')
     .attr('x', (_, i) => i * (legendWidth + 150) + 60)
     .attr('y', 220)
     .text(d => d)
     .attr('text-anchor', 'start')
-    .attr('class', 'legend-text');
+    .attr('class', 'party-text');
+
+  // create a tooltip
+  const tooltip = select('#app')
+    .append('div')
+    .attr('position', 'absolute')
+    .attr('visibility', 'hidden')
+    .text("I'm a circle!");
+
+  select('#district')
+    .on('mouseover', _ => tooltip.attr('visibility', 'visible'))
+    .on('mousemove', _ =>
+      tooltip
+        .attr('top', event.pageY - 800 + 'px')
+        .attr('left', event.pageX - 800 + 'px'),
+    )
+    .on('mouseover', _ => tooltip.attr('visibility', 'hidden'));
 
   myMap(datasetMap[0]);
 

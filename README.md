@@ -1,5 +1,7 @@
 # North Carolina Redistricting
 
-data sources: NC Legislature, NC Board of Elections
+Data sources: NC Legislature, NC Board of Elections
 
-formatting help from: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
+Formatting help from: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail
+
+Coding help from: stephenspann on SO https://stackoverflow.com/a/24225000
