@@ -36,7 +36,7 @@ function myViz(data) {
   let geoGenerator = geoPath().projection(projection);
   const color = scaleQuantize([0, 1], schemeRdBu[10]);
   const legendKeys = [
-    '100%',
+    '90%',
     '80%',
     '70%',
     '60%',
