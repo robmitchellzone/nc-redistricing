@@ -22,9 +22,7 @@
     flex: 0 0 12em;
   }
 }
-.dropdown {
-    flex-direction: column;
-}
+
 .map {
     display: block;
     margin: auto;
@@ -38,3 +36,8 @@
 h2, h3 {
     text-align: center;
 } 
+
+.writeup {
+  margin-left: 20px;
+  margin-right: 20px
+}

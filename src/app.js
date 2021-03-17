@@ -63,15 +63,18 @@ function myViz(data) {
         row['year'] === values['year'] && row['chamber'] === values['chamber'],
     );
     const colorArray = thisYear.map(row => color(row['dem_percent']));
-    svg
-      .append('g')
+    const state = svg.append('g').attr('id', 'state');
+    state
       .selectAll('path')
       .data(newData.features)
       .join('path')
       .attr('d', geoGenerator)
       .attr('id', 'district')
       .attr('fill', d => colorArray[d['properties']['District'] - 1])
-      .attr('stroke', '#000');
+      .attr('stroke', '#000')
+      .on('mouseover', mouseover)
+      .on('mousemove', mousemove)
+      .on('mouseleave', mouseleave);
   }
 
   // legend is the same so no need to update
@@ -110,22 +113,24 @@ function myViz(data) {
     .text(d => d)
     .attr('text-anchor', 'start')
     .attr('class', 'party-text');
-
-  // create a tooltip
-  const tooltip = select('#app')
-    .append('div')
-    .attr('position', 'absolute')
-    .attr('visibility', 'hidden')
-    .text("I'm a circle!");
-
-  select('#district')
-    .on('mouseover', _ => tooltip.attr('visibility', 'visible'))
-    .on('mousemove', _ =>
-      tooltip
-        .attr('top', event.pageY - 800 + 'px')
-        .attr('left', event.pageX - 800 + 'px'),
-    )
-    .on('mouseover', _ => tooltip.attr('visibility', 'hidden'));
+  // tooltip
+  const toolTip = select('.map')
+    .append('text')
+    .attr('class', 'tooltip')
+    .attr('text-anchor', 'start')
+    .style('opacity', 0)
+    .attr('x', 160)
+    .attr('y', 285);
+  // tooltip functions
+  const mouseover = function(_) {
+    toolTip.style('opacity', 1);
+  };
+  const mousemove = function(d) {
+    toolTip.text('District ' + d.target.__data__.properties.District);
+  };
+  const mouseleave = function(_) {
+    toolTip.style('opacity', 0);
+  };
 
   myMap(datasetMap[0]);
 
